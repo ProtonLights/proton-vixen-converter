@@ -8,5 +8,6 @@ setup(
     description = ("Converts *.vix to Proton format"),
     license = "MIT",
     url = "https://github.com/teslaworksumn/proton-vixen-converter",
-    packages=['vixenconverter', 'tests']
+    packages=['vixenconverter', 'tests'],
+    install_requires=['docopt']
 )
