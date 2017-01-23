@@ -1,5 +1,5 @@
 # proton-vixen-converter
-Converts *.vix files to Proton's format
+Converts *.vix files to Proton's format. Uses [Semantic Versioning](http://www.semver.org) 
 
 # Setup
 1. Navigate to the project root directory (proton-vixen-converter)
