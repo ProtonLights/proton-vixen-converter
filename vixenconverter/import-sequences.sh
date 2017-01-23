@@ -5,30 +5,30 @@
 set -o nounset
 set -o errexit
 
-dir="$HOME/Dropbox/Sequencing 2016/Sequencing/Sequence Data"
+dir="$HOME/Dropbox/Great Northern Sequencing/Sequencing/Sequence Data"
 seq_dir="$dir/Sequences"
 audio_dir="$dir/Audio"
 
 declare -a seqs audio
 
 seqs=( \
-  "(1) Jingle Breaks.vix" \
-  "(2) Feel Good.vix" \
-  "(3) Collide.vix" \
-  "(4) Unicorn Adventure.vix" \
-  "(5) Glory to the Bells.vix" \
-  "Preshow.vix" \
-  "Midshow.vix" \
+  "Baba Yaga.vix" \
+  "Beethoven 5.vix" \
+  "Slavonic Dance.vix" \
+  "Lucifer Polka.vix" \
+  "Flight of the Bumblebee.vix" \
+  "Hora Staccato.vix" \
+  "Firebird.vix" \
 )
 
 audio=( \
-  "(1) Jingle Breaks.ogg" \
-  "(2) Feel Good.ogg" \
-  "(3) Collide.ogg" \
-  "(4) Unicorn Adventure_Master.ogg" \
-  "(5) Glory to the Bells.ogg" \
-  "Preshow.ogg" \
-  "Midshow.ogg" \
+  "Baba Yaga.ogg" \
+  "Beethoven 5.ogg" \
+  "Slavonic Dance in C major.ogg" \
+  "Lucifer Polka.ogg" \
+  "Flight of the Bumblebee.ogg" \
+  "Hora Staccato.ogg" \
+  "Firebird Suite.ogg" \
 )
 
 for i in {0..6}; do
