@@ -3,5 +3,4 @@ Converts *.vix files to Proton's format. Uses [Semantic Versioning](http://www.s
 
 # Setup
 1. Navigate to the project root directory (proton-vixen-converter)
-2. Run the command `sudo pip3 install .` to install dependencies
-
+2. Run the command `sudo pip3 install -r requirements.txt' to install dependencies
