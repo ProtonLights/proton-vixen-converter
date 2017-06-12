@@ -8,8 +8,8 @@ from vixenfiles import VixenSequence,VixenProfile
 help_message = """Proton - Vixen Converter
 
 Usage:
-    converter.py import-sequence <proton-path> <admin-key> <seq-file> <audio-file> <layout-id>
-    converter.py import-layout <proton-path> <pro-file>
+    converter.py import-sequence <admin-key> <seq-file> <audio-file> <layout-id>
+    converter.py import-layout <pro-file>
     converter.py --version
     converter.py (-h | --help)
 
@@ -20,13 +20,13 @@ Options:
 
 
 
-def add_seq_to_proton_cli(proton_path, seq, seq_file, key_file, audio_file, layout_id):
+def add_seq_to_proton_cli(seq, seq_file, key_file, audio_file, layout_id):
     """Executes the proton_cli command 'new-vixen-sequence' with all appropriate parameters."""
 
     # new-vixen-sequence <admin-key> <name> <music-file> <frame-duration> <data-file> <layout-id>
     seq_md = seq.get_metadata()
-    os.execl(proton_path,
-        'proton',
+    os.execlp('proton_cli',
+        'proton_cli',
         'new-vixen-sequence',
         key_file,
         seq_md['title'],
@@ -37,14 +37,14 @@ def add_seq_to_proton_cli(proton_path, seq, seq_file, key_file, audio_file, layo
         layout_id)
 
 
-def add_layout_to_proton_cli(proton_path, layout_file):
+def add_layout_to_proton_cli(layout_file):
     """Executes the proton_cli command 'new-layout' with all appropriate parameters."""
 
     # new-layout <layout-file>
-    os.execl(proton_path, 'proton', 'new-layout', layout_file)
+    os.execlp('proton_cli', 'proton_cli', 'new-layout', layout_file)
 
 
-def import_profile(proton_path, pro_file):
+def import_profile(pro_file):
     """Converts a Vixen profile (.pro) to a Proton layout and adds it to proton_cli."""
 
     # Get profile
@@ -64,10 +64,10 @@ def import_profile(proton_path, pro_file):
     ofile.close()
 
     # Add to proton-cli
-    add_layout_to_proton_cli(proton_path, layout_file_name)
+    add_layout_to_proton_cli(layout_file_name)
 
 
-def import_sequence(proton_path, seq_file, key_file, audio_file, layout_id):
+def import_sequence(seq_file, key_file, audio_file, layout_id):
     """Converts a Vixen sequence (.vix) to a Proton sequence and imports it into proton_cli."""
 
     # Get sequence
@@ -83,7 +83,7 @@ def import_sequence(proton_path, seq_file, key_file, audio_file, layout_id):
     ofile.close()
     
     # Add to proton-cli
-    add_seq_to_proton_cli(proton_path, seq, ofile_name, key_file, audio_file, layout_id)
+    add_seq_to_proton_cli(seq, ofile_name, key_file, audio_file, layout_id)
 
 
 def run():
@@ -94,16 +94,14 @@ def run():
     
     arguments = docopt(help_message, version='Vixen Converter 0.0.1')
     if arguments['import-sequence']:
-        proton_path = arguments['<proton-path>']
         seq_file = arguments['<seq-file>']
         key_file = arguments['<admin-key>']
         audio_file = arguments['<audio-file>']
         layout_id = arguments['<layout-id>']
-        import_sequence(proton_path, seq_file, key_file, audio_file, layout_id)
+        import_sequence(seq_file, key_file, audio_file, layout_id)
     else:
-        proton_path = arguments['<proton-path>']
         pro_file = arguments['<pro-file>']
-        import_profile(proton_path, pro_file)
+        import_profile(pro_file)
 
 
 # Don't run if imported
