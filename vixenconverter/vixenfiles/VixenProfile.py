@@ -27,8 +27,9 @@ class VixenProfile(VixenFile):
         return list(map(lambda x: int(x), order.split(',')))
 
 
-    def get_channels(self):
-        """Gets the channels in the profile in the correct order and in the format proton_cli expects."""
+    def get_channels(self, default_channel):
+        """Gets the channels in the profile in the correct order and in the format proton_cli expects.
+        default_channel is an unused DMX channel that is used as the default DMX channel"""
         
         channels = self.root.find("ChannelObjects")
         output_order = self.get_output_order()
@@ -37,7 +38,7 @@ class VixenProfile(VixenFile):
             'channelName': channel.text.replace('(', ' ').replace(')', ' ').replace('.', ' ').replace('\'', ' '),
             'color': format(int(channel.attrib['color']) & 0xffffff, "06X"),
             'internalChannel': output_order.index(int(channel.attrib['output'])) + 1,
-            'dmxChannel': 121, # Unused DMX channel in the 2016 show
+            'dmxChannel': default_channel,
             'fixtureName': 'VixFix' + self.name,
             'location': '0,0,0',
             'rotation': '0,0,0'
