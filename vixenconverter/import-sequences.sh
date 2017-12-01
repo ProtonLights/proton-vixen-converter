@@ -5,32 +5,30 @@
 set -o nounset
 set -o errexit
 
-dir="$HOME/Dropbox/Sequencing 2016/Sequencing/Sequence Data"
-seq_dir="$dir/Sequences"
+dir="$HOME/Dropbox/Light Show 2017/Sequencing/Sequence Data"
+seq_dir="$dir/Sequences/Show 2017 DO_NOT_EDIT"
 audio_dir="$dir/Audio"
+key_dir="$HOME/Documents/2017 Code/proton/proton-cli/show2017.pub"
 
 declare -a seqs audio
 
+
 seqs=( \
-  "(1) Jingle Breaks.vix" \
-  "(2) Feel Good.vix" \
-  "(3) Collide.vix" \
-  "(4) Unicorn Adventure.vix" \
-  "(5) Glory to the Bells.vix" \
-  "Preshow.vix" \
-  "Midshow.vix" \
+  "1_Aurora.vix" \
+  "2_Collide.vix" \
+  "3_GalaxyGroove.vix" \
+  "4_DnD.vix" \
+  "5_GlorytotheBells.vix" \
 )
 
 audio=( \
-  "(1) Jingle Breaks.ogg" \
-  "(2) Feel Good.ogg" \
-  "(3) Collide.ogg" \
-  "(4) Unicorn Adventure_Master.ogg" \
-  "(5) Glory to the Bells.ogg" \
-  "Preshow.ogg" \
-  "Midshow.ogg" \
+  "1_Aurora.ogg" \
+  "2_Collide.ogg" \
+  "3_GalaxyGroove.ogg" \
+  "4_DNDfinal.ogg" \
+  "5_GlorytotheBells.ogg" \
 )
 
-for i in {0..6}; do
-  ./converter.py import-sequence "$1" "$2" "$seq_dir/${seqs[$i]}" "$audio_dir/${audio[$i]}" "$3"
+for i in {0..4}; do
+  ./converter.py import-sequence "$key_dir" "$seq_dir/${seqs[$i]}" "$audio_dir/${audio[$i]}" "2"
 done
